@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #252d25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: #B8D600;
+    font-weight: bold;
+}
+
+table {
+    width: 900px;
+    height: 600px;
+    border-collapse: collapse;
+}
+
+table td, table th {
+    border: 1px solid white;
+}
+
+.containers {
+    width: 450px;
+    height: 300px;
+}
