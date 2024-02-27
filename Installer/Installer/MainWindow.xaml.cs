@@ -23,6 +23,27 @@ namespace Installer
         public MainWindow()
         {
             InitializeComponent();
+            Instalar();
+        }
+
+        private void cancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            var cerrar = MessageBox.Show("¿Deseas cancelar la instalación?", "Cancelar instalación", MessageBoxButton.YesNo, MessageBoxImage.Question).ToString();
+
+            if (cerrar.Equals("Yes"))
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void siguienteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Instalar()
+        {
+            // TODO: Iniciar el proceso de instalación del malware de forma asíncrona.
         }
     }
 }
