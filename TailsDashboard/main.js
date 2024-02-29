@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
     addTooltipListeners();
     addButtonEnviarComandoListener();
+    addBuscadorComandosListener();
 });
 
 
@@ -31,6 +32,29 @@ function addButtonEnviarComandoListener() {
 
     enviarComandoButton.addEventListener('click', () => {
         sendCommand();
+    });
+}
+
+
+// Function to add a listener to the command search
+function addBuscadorComandosListener() {
+    const inputBusqueda = document.getElementById('busqueda');
+    const selectOpciones = document.getElementById('opciones');
+    const opciones = selectOpciones.getElementsByTagName('option');
+
+    inputBusqueda.addEventListener('input', function() {
+        const filtro = inputBusqueda.value.toLowerCase();
+
+        for (let opcion of opciones) {
+            const texto = opcion.textContent.toLowerCase();
+            if (texto.includes(filtro)) {
+                opcion.style.display = '';
+            } else {
+                opcion.style.display = 'none';
+            }
+        }
+        selectOpciones.click();
+        selectOpciones.selectedIndex = 0;
     });
 }
 
