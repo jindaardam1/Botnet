@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', function () {
     addTooltipListeners();
     addButtonEnviarComandoListener();
     addBuscadorComandosListener();
+    console.log(encryptToSha512(getDateTime()))
 });
 
 
@@ -62,6 +63,17 @@ function addBuscadorComandosListener() {
 // Function to encrypt text to SHA512, such as commands or passwords
 function encryptToSha512(text) {
     return sha512(text);
+}
+
+
+// Function that returns formatted datetime and hour to use it like password
+function getDateTime() {
+    const now = new Date();
+    const madridTime = now.toLocaleString('en-US', { timeZone: 'Europe/Madrid', hour12: false });
+    const [date, time] = madridTime.split(', ');
+    const [month, day, year] = date.split('/');
+    const [hour24] = time.split(':');
+    return `${day}${month}${year}${hour24}`.replace("0", "");
 }
 
 

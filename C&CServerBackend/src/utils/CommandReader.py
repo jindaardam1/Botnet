@@ -1,4 +1,4 @@
-import hashlib
+from src.utils.InputChecker import InputChecker
 
 
 class CommandReader:
@@ -11,10 +11,6 @@ class CommandReader:
     @classmethod
     def recognize(cls, command):
         for c in cls.commands:
-            hash_code = hashlib.sha512(c.encode())
-
-            hash_hex = hash_code.hexdigest()
-
+            hash_hex = InputChecker.encrypt_text(c)
             if hash_hex == command:
                 return c
-
