@@ -35,20 +35,26 @@ def encrypt_text(text, algorithm='sha512'):
 class InputChecker:
 
     @staticmethod
-    def validate_input_command(input_text):
-        input_data_array = input_text.split(";")
+    def validate_input_string(input_text):
+        input_data_array = input_text.split(";;")
 
         if len(input_data_array) != 0:
             input_password_encrypted = input_data_array.pop(0)
-            valid_password_encrypted = encrypt_text(InputChecker.get_date_time())
+            valid_password_encrypted = encrypt_text("11")
+
+            input_datetime_encrypted = input_data_array.pop(0)
+            valid_date_encrypted = encrypt_text(InputChecker.get_date_time())
 
             command_encrypted = input_data_array.pop(0)
             command = CommandReader.recognize(command_encrypted)
 
             arguments = input_data_array.copy()
 
-            if (input_password_encrypted == valid_password_encrypted
-                    and CommandReader.validate_arguments(arguments)):
+            is_valid_password = input_password_encrypted == valid_password_encrypted
+            is_valid_date_time = input_datetime_encrypted == valid_date_encrypted
+            is_valid_command_arguments = CommandReader.validate_arguments(arguments)
+
+            if is_valid_password and is_valid_date_time and is_valid_command_arguments:
                 CommandExecutor.execute_command(command, arguments)
 
     @staticmethod
