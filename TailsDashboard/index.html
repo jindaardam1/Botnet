@@ -23,7 +23,7 @@
                             <label for="contra">
                                 INTRODUCIR CONTRASEÑA
                                 <br/>
-                                <input id="contra" type="number" min="0" max="24">
+                                <input id="contra" type="number" min="0" max="24" placeholder="Contraseña">
                                 <span class="tooltiptext">Ejemplo => <br/>Hora: 14:47, Contraseña: 14</span>
                             </label>
                         </div>
@@ -38,10 +38,10 @@
                             <br/>
 
                             <select id="opciones">
-                                <option value="comando_1">comando_1</option>
-                                <option value="comando_2">comando_2</option>
-                                <option value="comando_3">comando_3</option>
-                                <option value="comando_4">comando_4</option>
+                                <option value="find_online_devices" selected>find_online_devices</option>
+                                <option value="start_attack">start_attack</option>
+                                <option value="placeholder_command">placeholder_command</option>
+                                <option value="placeholder_command2">placeholder_command2</option>
                             </select>
                         </label>
                     </div>
@@ -50,13 +50,25 @@
 
             <tr>
                 <td>
-                    <div class="containers">
+                    <div class="containers" id="divArgumentos">
+                        <label for="deviceType">TIPO DE DISPOSITIVO</label>
+                        <input type="text" id="deviceType" placeholder="Introduce el tipo de dispositivo">
 
+                        <br>
+
+                        <label for="deviceAmount">CANTIDAD DE DISPOSITIVOS</label>
+                        <input type="text" id="deviceAmount" placeholder="Introduce la cantidad">
                     </div>
                 </td>
                 <td>
                     <div class="containers">
-                        <button id="buttonEnviarComando">ENVIAR COMANDO</button>
+                        <button id="buttonEnviarComando" disabled>ENVIAR COMANDO</button>
+                        <p id="buttonTimer" style="visibility: hidden">0</p>
+                        <a href="command_list.html">
+                            <button id="buttonListaComandos">LISTA DE COMANDOS</button>
+                        </a>
+                        <br/>
+                        <button id="buttonConexion">CONECTAR</button>
                     </div>
                 </td>
             </tr>
