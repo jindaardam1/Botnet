@@ -20,9 +20,13 @@ def encrypt_text(text, algorithm='sha512'):
 
         if algorithm in hash_algorithms:
             hash_func = hash_algorithms[algorithm]
+
             return hash_func(text_bytes).hexdigest()
         else:
+            print("Algoritmo no soportado")
+
             return "Algoritmo no soportado"
+
     except UnicodeEncodeError as e:
         print(f"Error de codificación Unicode: {e}")
         return f"Error de codificación Unicode: {e}"
