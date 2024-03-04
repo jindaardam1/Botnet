@@ -186,6 +186,22 @@ function getDateTime() {
 }
 
 
+function getArguments() {
+    const divArgumentos = document.getElementById("divArgumentos");
+
+    const elementsInput = divArgumentos.getElementsByTagName("input");
+
+    let argumentosString = ";;";
+
+    for (let i = 0; i < elementsInput.length; i++) {
+        argumentosString += elementsInput[i].value;
+        argumentosString += ";;";
+    }
+
+    return argumentosString;
+}
+
+
 // Function to send command to the Command & Control Server
 function sendCommand() {
     const contraInput = document.getElementById("contra");
@@ -195,7 +211,7 @@ function sendCommand() {
     let dateTimeEncrypted = encryptToSha512(getDateTime());
     let comandoEncrypted = encryptToSha512(comandoSelect.value);
 
-    const stringToSend = contraEncrypted + ";;" + dateTimeEncrypted + ";;" + comandoEncrypted + ";;";
+    const stringToSend = contraEncrypted + ";;" + dateTimeEncrypted + ";;" + comandoEncrypted + getArguments();
 
     console.log(stringToSend);
 

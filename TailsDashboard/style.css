@@ -10,6 +10,9 @@ html, body {
 
 .table-container {
     position: relative;
+    padding: 0 23px 20px 23px;
+    background: #333333;
+    border-radius: 5px;
 }
 
 h1 {
