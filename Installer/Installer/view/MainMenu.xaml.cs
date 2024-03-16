@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Installer.utils;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Installer.view
@@ -11,11 +12,14 @@ namespace Installer.view
         public MainMenu()
         {
             InitializeComponent();
+            SetTexts();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void SetTexts()
         {
+            TextBlockHeader.Text = App.TextResource.GetTranslatedMainMenuHeaderText();
 
+            CheckBoxTexts.ItemsSource = App.TextResource.GetTranslatedMainMenuCheckBoxTexts();
         }
     }
 }

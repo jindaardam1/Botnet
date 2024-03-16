@@ -6,9 +6,9 @@
              mc:Ignorable="d" 
              Height="350" Width="500">
     <Grid Background="#444444">
-        
+
         <Grid>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="1"/>
@@ -20,19 +20,21 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="0" Background="#1DB954" Margin="15 0"/>
+            <Label x:Name="HeaderText" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="0" Background="#1DB954" Margin="15 0"/>
             <Label Grid.Row="0" Grid.Column="1" Background="#1DB954" Margin="0 15"/>
 
             <StackPanel Grid.Row="0" Grid.Column="2" Margin="30" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Configuración de instalación" FontSize="18" FontWeight="Bold" Margin="0 0 0 15" Foreground="#1DB954"/>
-                <CheckBox Content="Eliminar anuncios" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954" IsChecked="true"/>
-                <CheckBox Content="Descargar sin conexión" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954"/>
-                <CheckBox Content="Audio de alta calidad (320 kbit/s)" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954" IsChecked="true"/>
-                <CheckBox Content="Organizar cola de reproducción" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954"/>
-                <CheckBox Content="Sin estricción de almacenamiento" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954"/>
+                <TextBlock Text="{Binding}" FontSize="18" FontWeight="Bold" Margin="0 0 0 15" Foreground="#1DB954" Name="TextBlockHeader"/>
+                <ItemsControl x:Name="CheckBoxTexts">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding}" Margin="20 10 10 10" Foreground="WhiteSmoke" Background="#1DB954"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
 
         </Grid>
-        
+
     </Grid>
 </UserControl>

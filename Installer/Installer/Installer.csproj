@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="utils\Enums.cs" />
+    <Compile Include="utils\TextResources.cs" />
+    <Compile Include="viewmodel\SelectLanguage.xaml.cs">
+      <DependentUpon>SelectLanguage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\FinalMenu.xaml.cs">
       <DependentUpon>FinalMenu.xaml</DependentUpon>
     </Compile>
@@ -77,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="viewmodel\SelectLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\FinalMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
