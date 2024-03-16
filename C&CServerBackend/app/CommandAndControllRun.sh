@@ -40,6 +40,12 @@ run_command_and_control_server() {
 # Establecer la codificación de la terminal a UTF-8
 export LANG=en_US.UTF-8
 
+# Obtener la ruta de ejecución actual
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Añadir la ruta de ejecución al PYTHONPATH
+export PYTHONPATH="$CURRENT_DIR:$PYTHONPATH"
+
 install_python_if_its_not
 
 install_python_requirements
