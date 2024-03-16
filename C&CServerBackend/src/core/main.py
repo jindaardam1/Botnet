@@ -1,1 +1,2 @@
-print("Server backend")
+while True:
+    pass

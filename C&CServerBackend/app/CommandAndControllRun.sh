@@ -27,6 +27,7 @@ install_python_requirements() {
     install_package_if_not_exists "hashlib"
     install_package_if_not_exists "datetime"
     install_package_if_not_exists "colorama"
+    install_package_if_not_exists "tinydb"
     echo "Los requisitos de Python han sido instalados correctamente."
 }
 
