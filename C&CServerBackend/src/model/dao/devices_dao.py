@@ -1,10 +1,19 @@
+import os
+
 from tinydb import TinyDB
 
-from src.model.entitis.device import Device
+from src.model.entities.device import Device
+
+
+def create_db_directory_if_not_exists():
+    directory_path = "../../tinydb/"
+    if not os.path.exists(directory_path):
+        os.makedirs(directory_path)
 
 
 class DevicesDAO:
-    def __init__(self, db_file='devices.json'):
+    def __init__(self, db_file='../../tinydb/devices.json'):
+        create_db_directory_if_not_exists()
         self.db = TinyDB(db_file)
 
     def create_device(self, device):
