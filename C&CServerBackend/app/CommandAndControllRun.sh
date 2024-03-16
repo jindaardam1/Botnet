@@ -1,5 +1,13 @@
 #!/bin/bash
 
+add_path_to_pythonpath() {
+    CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+    export PYTHONPATH="$CURRENT_DIR:$PYTHONPATH"
+
+    echo "Añadida la ruta al PYTHONPATH"
+}
+
 # Función para instalar Python si no está instalado
 install_python_if_its_not() {
     if ! command -v python3 &> /dev/null; then
@@ -40,11 +48,7 @@ run_command_and_control_server() {
 # Establecer la codificación de la terminal a UTF-8
 export LANG=en_US.UTF-8
 
-# Obtener la ruta de ejecución actual
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-# Añadir la ruta de ejecución al PYTHONPATH
-export PYTHONPATH="$CURRENT_DIR:$PYTHONPATH"
+add_path_to_pythonpath
 
 install_python_if_its_not
 
