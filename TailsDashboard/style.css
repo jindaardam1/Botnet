@@ -150,3 +150,20 @@ li p {
     color: white;
 }
 
+a {
+    color: #B8D600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: rgba(184, 214, 0, 0.5);
+}
+
+h2 {
+    color: orange;
+}
+
+p strong {
+    color: #B8D600;
+}
