@@ -9,3 +9,4 @@ authors = ["Jagoba Inda Arizaleta"]
 
 [dependencies]
 num_cpus = "1.16.0"
+rand = "0.9.0-alpha.1"
