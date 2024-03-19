@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace WindowsTools.utils
 {
-    public class SystemResources
+    public static class SystemResources
     {
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]

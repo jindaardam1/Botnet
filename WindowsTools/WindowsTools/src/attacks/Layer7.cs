@@ -5,7 +5,7 @@ using WindowsTools.utils;
 
 namespace WindowsTools.attacks
 {
-    public class Layer7
+    public static class Layer7
     {
         private static readonly int MaxThreads = SystemResources.CalculateMaxThreads();
         private static int _runningThreads;

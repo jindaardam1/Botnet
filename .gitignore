@@ -7,3 +7,5 @@
 /Installer/Installer/obj/
 /Installer/Installer/bin/
 /Installer/.vs/
+/windows_tools/.idea
+/windows_tools/target
