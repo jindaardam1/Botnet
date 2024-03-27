@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function () {
-    addTooltipListeners();
+    //addTooltipListeners();
     addButtonEnviarComandoListener();
     addBuscadorComandosListener();
     addCommandSelectListener();
@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 // Function to add listeners for tooltips
+/*
 function addTooltipListeners() {
     const tooltip = document.getElementById('contra');
     const tooltipText = document.querySelector('.tooltiptext');
@@ -26,6 +27,7 @@ function addTooltipListeners() {
 
     });
 }
+*/
 
 
 // Function to add listener to the send command button
@@ -33,7 +35,7 @@ function addButtonEnviarComandoListener() {
     const enviarComandoButton = document.getElementById("buttonEnviarComando");
 
     enviarComandoButton.addEventListener('click', () => {
-        sendCommand();
+        getCommand();
     });
 }
 
@@ -203,7 +205,7 @@ function getArguments() {
 
 
 // Function to send command to the Command & Control Server
-function sendCommand() {
+function getCommand() {
     const contraInput = document.getElementById("contra");
     const comandoSelect = document.getElementById("opciones");
 
@@ -214,6 +216,7 @@ function sendCommand() {
     const stringToSend = contraEncrypted + ";;" + dateTimeEncrypted + ";;" + comandoEncrypted + getArguments();
 
     console.log(stringToSend);
+    sendCommand(stringToSend);
 
     buttonSendCommandIsDisabled(true);
 
@@ -254,4 +257,15 @@ function actualizarTiempo(tiempoRestante) {
     const segundos = tiempoRestante / 1000;
 
     document.getElementById("buttonTimer").textContent = segundos.toFixed(1);
+}
+
+
+function sendCommand(commandString) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "http://localhost:5000/recibir-datos", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(commandString);
+
+    console.log("Comando enviado");
 }

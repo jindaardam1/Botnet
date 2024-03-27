@@ -36,13 +36,14 @@ install_python_requirements() {
     install_package_if_not_exists "datetime"
     install_package_if_not_exists "colorama"
     install_package_if_not_exists "tinydb"
+    install_package_if_not_exists "gunicorn"
     echo "Los requisitos de Python han sido instalados correctamente."
 }
 
-# Función para ejecutar el archivo main.py
-run_command_and_control_server() {
-    echo "Ejecutando el servidor de comando y control..."
-    python3 ../src/core/main.py
+# Función para ejecutar la aplicación Flask con Gunicorn
+run_flask_with_gunicorn() {
+    echo "Ejecutando la aplicación Flask con Gunicorn..."
+    gunicorn -w 4 -b 127.0.0.1:5000 ../src/core/main:app
 }
 
 # Establecer la codificación de la terminal a UTF-8
@@ -54,4 +55,4 @@ install_python_if_its_not
 
 install_python_requirements
 
-run_command_and_control_server
+run_flask_with_gunicorn
